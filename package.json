@@ -1,0 +1,24 @@
+{
+  "name": "dreamui-react",
+  "version": "1.0.0",
+  "description": "dreamer UI components build with React.",
+  "main": "lib/DreamReact.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/94dreamer/dreamui-react.git"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "dreamui"
+  ],
+  "author": "zhouzhen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/94dreamer/dreamui-react/issues"
+  },
+  "homepage": "https://github.com/94dreamer/dreamui-react#readme"
+}
