@@ -1,5 +1,4 @@
-![dreamerLOGO](./dreamer.png)
-## Dream UI React
+## Dream UI React ![dreamerLOGO](./dream.png)
 
 Dream UI component build with React.
 
