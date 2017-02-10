@@ -1,0 +1,20 @@
+{
+  "presets": [
+    "es2015",
+    "react",
+    "stage-0"
+  ],
+  "ignore":[
+    "jquery.js",
+    "jquery.min.js"
+  ],
+  "plugins": [
+    "syntax-class-properties",
+    "syntax-decorators",
+    "syntax-object-rest-spread",
+
+    "transform-class-properties",
+    "transform-decorators-legacy",
+    "transform-object-rest-spread"
+  ]
+}

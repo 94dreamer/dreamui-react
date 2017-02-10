@@ -1,10 +1,15 @@
 {
   "name": "dreamui-react",
   "version": "1.0.0",
-  "description": "dreamer UI components build with React.",
-  "main": "lib/DreamReact.js",
+  "description": "dream UI components build with React.",
+  "main": "lib/DreamUIReact.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "start": "gulp",
+    "build": "cross-env NODE_ENV=production gulp build",
+    "docs": "rm -rf www && cross-env NODE_ENV=production gulp build:docs && browser-sync start -s www",
+    "docs:preview": "browser-sync start -s www",
+    "examples": "node ./examples/server.js"
   },
   "repository": {
     "type": "git",
@@ -13,12 +18,19 @@
   "keywords": [
     "react",
     "react-component",
-    "dreamui"
+    "dreamui",
+    "dreamui-react",
+    "react.js",
+    "web-components"
   ],
   "author": "zhouzhen",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/94dreamer/dreamui-react/issues"
   },
-  "homepage": "https://github.com/94dreamer/dreamui-react#readme"
+  "homepage": "https://github.com/94dreamer/dreamui-react#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
 }

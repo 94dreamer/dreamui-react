@@ -1,23 +1,24 @@
-## Dream UI React ![dreamerLOGO](./dream.png)
+# ![dreamerLOGO](./dream.png) Dream UI React
 
-Dream UI component build with React.
+[![NPM version](https://img.shields.io/npm/v/amazeui-react.svg?style=flat-square)](https://www.npmjs.com/package/dreamui-react)
 
-Dream UI 和 React.js 封装的 Web 组件库。
+Dream UI component build with React.  
+Dream UI 和 `React.js` 封装的 Web 组件库。
 
-
+----
 
 ## Start Program
 
 ### 目录结构
 
 ```
-├── package.json			# npm 文档
-├── dsit					# 构建目录
+├── package.json			# npm文档
+├── dist					# 构建目录
 ├── docs					# 文档源文件
 ├── example				# 实例源文件
-├── lib					# npm 源文件目录
+├── lib					# npm源文件目录
 ├── www 					# 文档构建目录
-├── src					# 组件原文件
+├── src					# 组件源文件
 └──
 ```
 
