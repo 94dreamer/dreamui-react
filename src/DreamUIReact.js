@@ -12,5 +12,5 @@ if(!React){
 module.exports={
   version:'__version__',
 
-
+  Alert: require('./Alert'),
 };
