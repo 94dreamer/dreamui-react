@@ -1,18 +1,24 @@
 /**
  * Created by zhouzhen on 2017/2/11.
  */
-import React, {Component} from 'react';
-export default class Alert extends Component {
+import React, {
+  Component,
+  PropTypes,
+} from 'react';
+
+class Alert extends Component {
   constructor(props) {
-    super(proos);
-    this.state = {}
+    super(props);
   }
 
   render() {
     return (
-      <div>
-
-      </div>
-    )
+      <div></div>
+    );
   }
 }
+
+Alert.propTypes = {};
+Alert.defaultProps = {};
+
+export default Alert;

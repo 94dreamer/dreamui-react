@@ -1,5 +1,9 @@
 
+# dist
+lib
 
+# docs build dir
+www
 
 /node_modules
 /.idea

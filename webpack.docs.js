@@ -6,7 +6,7 @@ import hl from 'highlight.js';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 
 const isProduction = process.env.NODE_ENV === 'production';
-const codeRenderer = function(code, lang) {
+const codeRenderer = function (code, lang) {
   lang = lang === 'js' ? 'javascript' : lang;
   if (lang === 'html') {
     lang = 'xml';
@@ -42,23 +42,23 @@ const basePlugins = [
     assets: isProduction ? 'http://s.amazeui.org/assets/react' : '',
     stat: isProduction,
     minify: isProduction ? {
-      removeComments: true,
-      collapseWhitespace: true
-    } : null,
+        removeComments: true,
+        collapseWhitespace: true
+      } : null,
   }),
 ];
 const envPlugins = isProduction ? [
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-  }),
-  new webpack.BannerPlugin(`Last update: ${new Date().toString()}`),
-] : [
-  new webpack.optimize.OccurenceOrderPlugin(),
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoErrorsPlugin(),
-];
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.BannerPlugin(`Last update: ${new Date().toString()}`),
+  ] : [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+  ];
 
 export default {
   debug: !isProduction,

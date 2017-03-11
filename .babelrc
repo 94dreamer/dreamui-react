@@ -11,6 +11,7 @@
   "plugins": [
     "syntax-class-properties",
     "syntax-decorators",
+
     "syntax-object-rest-spread",
 
     "transform-class-properties",
