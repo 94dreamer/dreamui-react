@@ -1,123 +1,73 @@
-import path from 'path';
-import autoprefixer from 'autoprefixer';
-import webpack from 'webpack';
-import marked from 'marked';
-import hl from 'highlight.js';
-import HTMLWebpackPlugin from 'html-webpack-plugin';
+var path = require('path');
+var webpack=require('webpack');
+var project = require('./package.json');
+var node_modules = path.resolve(__dirname, 'node_modules');
+var react = path.resolve(node_modules, 'react/dict/react.js');
+var autoprefixer = require("autoprefixer");
+var process = require('process');
 
-const isProduction = process.env.NODE_ENV === 'production';
-const codeRenderer = function (code, lang) {
-  lang = lang === 'js' ? 'javascript' : lang;
-  if (lang === 'html') {
-    lang = 'xml';
-  }
-
-  let hlCode = lang ?
-    hl.highlight(lang, code).value : hl.highlightAuto(code).value;
-
-  return `<div class="doc-highlight"><pre>
-<code class="${lang || ''}">${hlCode}</code></pre></div>`;
-};
-
-let renderer = new marked.Renderer();
-renderer.code = codeRenderer;
-
-const entry = './docs/app.js';
-const devEntry = [
-  'webpack/hot/dev-server',
-  'webpack-hot-middleware/client?reload=true',
-  entry,
-];
-const basePlugins = [
-  new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-    }
-  }),
-  new HTMLWebpackPlugin({
-    title: 'Amaze UI React',
-    template: 'docs/index.html',
-    inject: false,
-    UICDN: isProduction ? 'http://cdn.amazeui.org/amazeui/2.7.1/' : '',
-    assets: isProduction ? 'http://s.amazeui.org/assets/react' : '',
-    stat: isProduction,
-    minify: isProduction ? {
-        removeComments: true,
-        collapseWhitespace: true
-      } : null,
-  }),
-];
-const envPlugins = isProduction ? [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.BannerPlugin(`Last update: ${new Date().toString()}`),
-  ] : [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-  ];
-
-export default {
-  debug: !isProduction,
-  devtool: !isProduction ? '#eval' : null,
-
-  entry: isProduction ? entry : devEntry,
-
-  output: {
-    path: path.join(__dirname, isProduction ? 'www/react' : 'www'),
-    filename: `app.[hash:7]${isProduction ? '.min' : ''}.js`,
-    chunkFilename: '[id].chunk.js',
-    publicPath: isProduction ? '/react/' : '/'
+var ENV = process.env.NODE_ENV;
+var config = {
+  entry:{
+    'example':'./example/example.jsx'
   },
-
-  module: {
-    // noParse: /babel-core/,
-    loaders: [
+  output:{
+    //publicPath:"./dist/",
+    publicPath:ENV == 'development' ? "http://localhost:8008/example/dist/" : "./dist/",
+    path:"./example/dist/",
+    filename:'example.js',
+    chunkFilename:'chunk/[name].[chunkhash:8].js'
+  },
+  externals: [
+    {
+      "jquery": "jQuery",
+      "react": "React",
+      "react-dom": "ReactDOM",
+      "zepto": "Zepto"
+    },
+    require('webpack-require-http')
+  ],
+  module:{
+    rules:[
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loaders: [
-          'react-hot',
-          'transform/cacheable?brfs',
-          'babel'
-        ],
+        test:/\.(jsx|js)?$/,
+        exclude:/(node_modules)/,
+        loader: 'babel-loader?-babelrc,+cacheDirectory,presets[]=es2015,presets[]=stage-0,presets[]=react',
       },
       {
-        test: /\.less$/,
-        loaders: [
-          'style',
-          'css?minimize',
-          'postcss',
-          'less'
-        ],
-        include: [
-          path.join(__dirname, 'docs')
-        ]
+        test:/\.(scss|sass)?$/,
+        exclude:/(node_modules)/,
+        loader:'style!css!postcss!sass'
+      },
+      {
+        test:/\.css?$/,
+        exclude:/(node_modules)/,
+        //注意，因为例如ImageEditor.jsx/Slider.jsx代码中引用了node_modules下的css，所以此处不能排除掉node_modules目录
+        loader:'style-loader!css-loader'
       },
       {
         test: /\.md$/,
-        loader: 'html!markdown'
+        loader: "html-loader!markdown-loader"
       },
       {
-        test: /\.jpe?g$|\.gif$|\.png|\.ico$/,
-        loader: 'file?name=[path][name].[ext]&context=docs/assets'
-      },
-    ]
+        test:/\.(jpg|png|gif|jpeg)?$/,
+        loader:'url-loader'
+      }
+    ],
+    noParse:/react/
   },
-
-  plugins: basePlugins.concat(envPlugins),
-
-  // watch: !isProduction,
-  node: {
-    fs: 'empty'
+  resolve:{
+    alias:{
+      "dreamui-react":ENV == 'development' ? "../src/DreamUIReact.js" : '../lib/DreamUIReact.js'
+    }
   },
-
-  markdownLoader: {
-    renderer: renderer
-  },
-
-  postcss: [autoprefixer({browsers: ['> 1%', 'last 2 versions']})]
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer({browsers: ['> 0.1%']})],
+      }
+    })
+  ]
 };
+
+module.exports = config;

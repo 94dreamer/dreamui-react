@@ -1,56 +1,60 @@
 var path = require('path');
+var webpack=require('webpack');
 var project = require('./package.json');
-var node_modules = path.resolve(__dirname, 'node_modules');
-var react = path.resolve(node_modules, 'react/dict/react.js');
+var react = path.resolve(__dirname,'node_modules', 'react/dict/react.js');
 var autoprefixer = require("autoprefixer");
-var mousewheel = path.resolve(node_modules, 'jquery-mousewheel/jquery.mousewheel.js');
 
-module.exports = {
-  entry:{
-    'bundle':'./src/js/rui.jsx'
+const config = {
+  entry: {
+    'bundle': './src/DreamUIReact'
   },
-  output:{
-    path:"./",
-    library: 'react-component-lib',
+  output: {
+    path: path.resolve(__dirname, 'lib'),
+    library: 'DreamUIReact',
     libraryTarget: 'umd',
-    filename:'dist/bundle.js'
+    filename: 'DreamUIReact.js'
   },
   externals: {
     "jquery": "jQuery",
     "react": "React",
     "react-dom": "ReactDOM",
     "zepto": "Zepto",
-    "react-draggable-browser":"react-draggable-browser",
-    "swiper":"swiper",
-    "cropperjs":"cropperjs",
-    "jquery-mousewheel":"jquery-mousewheel"
+    "react-draggable-browser": "react-draggable-browser",
+    "swiper": "swiper",
+    "cropperjs": "cropperjs",
+    "jquery-mousewheel": "jquery-mousewheel"
   },
-  module:{
-    loaders:[
+  module: {
+    rules: [
       {
-        test:/\.(jsx)?$/,
-        exclude:/(node_modules)/,
-        loader: 'babel',
-        query:{
-          presets:['es2015', 'stage-0', 'react']
-        }
+        test: /\.js$/,
+        exclude: /node_modules/,
+        // loader: 'babel-loader',
+        // query: {
+        //   presets: ['es2015', 'stage-0', 'react']
+        // }
+        loader: 'babel-loader?-babelrc,+cacheDirectory,presets[]=es2015,presets[]=stage-0,presets[]=react',
       },
       {
-        test:/\.(scss|sass)?$/,
-        exclude:/(node_modules)/,
-        loader:'style?singleton!css!postcss!sass'
-      },
-      {
-        test:/\.css?$/,
+        test: /\.css$/,
         //注意，因为例如ImageEditor.jsx/Slider.jsx代码中引用了node_modules下的css，所以此处不能排除掉node_modules目录
-        loader:'style?singleton!css'
+        use: 'style-loader!css-loader'
       },
       {
-        test:/\.(jpg|png|gif|jpeg)?$/,
-        loader:'url'
+        test: /\.(jpg|png|gif|jpeg)$/,
+        use: 'url-loader'
       }
     ],
-    noParse:[react, mousewheel]
+    noParse: /react/
   },
-  postcss: [ autoprefixer({ browsers: ['> 0.1%'] }) ],
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer({browsers: ['> 0.1%']})],
+      }
+    })
+  ]
 };
+
+//config.plugins.push(new webpack.optimize.UglifyJsPlugin());
+module.exports = config;
