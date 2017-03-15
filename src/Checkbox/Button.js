@@ -5,9 +5,11 @@ import React, {
   Component,
   PropTypes,
 } from 'react';
+import classnames from 'classnames';
+
 
 const buttonStyles = {
-  border: '1px solid #eee',
+  border: '1px solid red',
   borderRadius: 3,
   backgroundColor: '#FFFFFF',
   cursor: 'pointer',
@@ -18,7 +20,7 @@ const buttonStyles = {
 
 const Button = ({children, onClick}) => (
   <button style={buttonStyles} onClick={onClick}>
-    {children}
+   {children}
   </button>
 );
 
