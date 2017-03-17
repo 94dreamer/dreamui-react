@@ -5,7 +5,6 @@ import React, {
   Component,
   PropTypes,
 } from 'react';
-import classnames from 'classnames';
 
 function getStyles(props, context) {  //根据props和默认的主题样式合并style
   const {
