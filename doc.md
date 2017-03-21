@@ -7,3 +7,9 @@
 - lodash 对象、数组操作库
 
 - inline-style-prefixer  行间样式加兼容
+
+- lodash.throttle 节流函数
+
+- lodash.merge 合并函数
+
+- recompose

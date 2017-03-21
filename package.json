@@ -43,8 +43,11 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "inline-style-prefixer": "^3.0.2",
+    "lodash.merge": "^4.6.0",
+    "lodash.throttle": "^4.1.1",
     "react-addons-css-transition-group": "^15.4.2",
     "react-tap-event-plugin": "^2.0.1",
+    "recompose": "^0.22.0",
     "warning": "^3.0.0"
   },
   "devDependencies": {

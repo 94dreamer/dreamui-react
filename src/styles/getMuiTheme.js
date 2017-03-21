@@ -7,7 +7,7 @@ import lightBaseTheme from './baseThemes/lightBaseTheme';//默认亮色主题
 import zIndex from './zIndex';//默认重要组件层级
 import autoprefixer from '../utils/auotoprefixer';//行内样式兼容处理
 import callOnce from '../utils/callOnce';//样式装载次数警告
-import rtl from '../utils/rtl';
+import rtl from '../utils/rtl';//支持右向左排列
 import compose from 'recompose/compose';
 import typography from './typography';
 import {
