@@ -8,8 +8,8 @@ import zIndex from './zIndex';//默认重要组件层级
 import autoprefixer from '../utils/auotoprefixer';//行内样式兼容处理
 import callOnce from '../utils/callOnce';//样式装载次数警告
 import rtl from '../utils/rtl';//支持右向左排列
-import compose from 'recompose/compose';
-import typography from './typography';
+import compose from 'recompose/compose';//react高阶组件库
+import typography from './typography';//版面设计
 import {
   red500,grey400,grey500,grey600,grey700,
   transparent,lightWhite,white,darkWhite,lightBlack,black,

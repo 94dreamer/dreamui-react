@@ -5,11 +5,11 @@ import Welcome from './Welcome';
 import DreamUIReact from '../src/DreamUIReact'
 
 // import MuiThemeProvider from '/styles/MuiThemeProvider';
+import muiThemeable from '../src/styles/muiThemeable';
 
 const {
   Button,
   Avatar,
-
 }=DreamUIReact;
 
 storiesOf('Welcome', module)

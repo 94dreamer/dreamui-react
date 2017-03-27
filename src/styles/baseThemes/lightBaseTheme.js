@@ -10,7 +10,7 @@ import {
   white, darkBlack, fullBlack,
 } from '../colors';
 import {fade} from '../../utils/colorManipulator'
-import spacing from '../spcing';
+import spacing from '../spacing';
 
 /**
  * 这个主题被dreamui默认使用，是所有组件在没有设定自定义样式下的兜底样式。

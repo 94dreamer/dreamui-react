@@ -1,5 +1,6 @@
 /**
  * Created by zhouzhen on 2017/3/15.
+ * 组件总容器
  */
 import {Component, ProTypes} from 'react';
 import getMuiTheme from './getMuiTheme';

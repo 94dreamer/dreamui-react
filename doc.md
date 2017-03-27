@@ -12,4 +12,4 @@
 
 - lodash.merge 合并函数
 
-- recompose
+- recompose react高阶组件函数库

@@ -1,5 +1,6 @@
 /**
  * Created by zhouzhen on 2017/3/20.
+ * 颜色板
  */
 export const red50 = '#ffebee';
 export const red100 = '#ffcdd2';

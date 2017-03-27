@@ -1,5 +1,6 @@
 /**
  * Created by zhouzhen on 2017/3/20.
+ * 间距、高度
  */
 export default {
   iconSize: 24,//icon尺寸
