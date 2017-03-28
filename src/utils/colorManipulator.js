@@ -1,5 +1,6 @@
 /**
  * Created by zhouzhen on 2017/3/17.
+ * //颜色函数
  */
 import warning from 'warning';
 

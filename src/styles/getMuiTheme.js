@@ -2,19 +2,18 @@
  * Created by zhouzhen on 2017/3/15.
  */
 import merge from 'lodash.merge';
-import {darken,fade,emphasize,lighten} from '../utils/colorManipulator';//颜色函数
+import {darken, fade, emphasize, lighten} from '../utils/colorManipulator';//颜色函数
 import lightBaseTheme from './baseThemes/lightBaseTheme';//默认亮色主题
 import zIndex from './zIndex';//默认重要组件层级
-import autoprefixer from '../utils/auotoprefixer';//行内样式兼容处理
+import autoprefixer from '../utils/autoprefixer';//行内样式兼容处理
 import callOnce from '../utils/callOnce';//样式装载次数警告
 import rtl from '../utils/rtl';//支持右向左排列
 import compose from 'recompose/compose';//react高阶组件库
 import typography from './typography';//版面设计
 import {
-  red500,grey400,grey500,grey600,grey700,
-  transparent,lightWhite,white,darkWhite,lightBlack,black,
+  red500, grey400, grey500, grey600, grey700,
+  transparent, lightWhite, white, darkWhite, lightBlack, black,
 } from './colors';
-
 
 /**
  * 获取基础主题样式
@@ -22,15 +21,15 @@ import {
  * 它们之间深度合并
  */
 
-export default function getMuiTheme(muiTheme,...more) {
-  muiTheme=merge({
+export default function getMuiTheme(muiTheme, ...more) {
+  muiTheme = merge({
     zIndex,
-    isRtl:false,
-    userAgent:undefined,
-  },lightBaseTheme,muiTheme,...more);
+    isRtl: false,
+    userAgent: undefined,
+  }, lightBaseTheme, muiTheme, ...more);
 
-  const {spacing,fontFamily,palette}=muiTheme;
-  const baseTheme={spacing,fontFamily,palette};
+  const {spacing, fontFamily, palette} = muiTheme;
+  const baseTheme = {spacing, fontFamily, palette};
 
   muiTheme = merge({
     appBar: {
@@ -332,16 +331,15 @@ export default function getMuiTheme(muiTheme,...more) {
       rippleBackgroundColor: grey700,
     },
   }, muiTheme, {
-    baseTheme, // 提供向后兼容.
+    baseTheme, // To provide backward compatibility.
     rawTheme: baseTheme, // To provide backward compatibility.
   });
 
-  const transformers=[autoprefixer,rtl,callOnce]
-    .map((t)=>t(muiTheme))
-    .filter((t)=>t);
+  const transformers = [autoprefixer, rtl, callOnce]
+    .map((t) => t(muiTheme))
+    .filter((t) => t);
 
-  muiTheme.prepareStyles=compose(...transformers);
+  muiTheme.prepareStyles = compose(...transformers);
 
   return muiTheme;
 }
-

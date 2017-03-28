@@ -1,10 +1,7 @@
 /**
  * Created by zhouzhen on 2017/2/11.
  */
-import React, {
-  Component,
-  PropTypes,
-} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {  //根据props和默认的主题样式合并style
   const {
@@ -13,12 +10,12 @@ function getStyles(props, context) {  //根据props和默认的主题样式合�
     size,
   }=props;//解构获得props属性
 
-  const {avatar}=context.muiThem; //引入默认主题样式
+  const {avatar}=context.muiTheme; //引入默认主题样式
 
   const styles = {
     root: {
       color: color || avatar.color,
-      backgroundColor: backgroundColor,
+      backgroundColor: backgroundColor || avatar.backgroundColor,
       userSelect: 'none',
       display: 'inline-flex',
       alignItems: 'center',
@@ -33,7 +30,7 @@ function getStyles(props, context) {  //根据props和默认的主题样式合�
       width: size * 0.6,
       height: size * 0.6,
       fontSize: size * 0.6,
-      marfin: size * 0.2,
+      margin: size * 0.2,
     },
   };
 
@@ -51,7 +48,7 @@ class Avatar extends Component {
       ...other
     }=this.props;
 
-    const {prepareStyles}=this.context.muiThem;
+    const {prepareStyles}=this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     if (src) {
@@ -85,7 +82,7 @@ Avatar.defaultProps = {
   size: 40,
 };
 Avatar.contextTypes = {
-  muiThem: PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 };
 Avatar.propTypes = {
   backgroundColor: PropTypes.string,
@@ -95,7 +92,7 @@ Avatar.propTypes = {
   icon: PropTypes.element,
   size: PropTypes.number,
   src: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 export default Avatar;
