@@ -13,3 +13,11 @@
 - lodash.merge 合并函数
 
 - recompose react高阶组件函数库
+
+- react-event-listener 构建全局event的react组件(自写)
+
+- react-addons-shallow-compare 官方的es6语法的辅助函数，在shouldComponentUpdate中比较状态，减少更新次数
+
+- keycode 映射按键和键名
+
+- react-addons-transition-group 官方提供的动画插件的react组件

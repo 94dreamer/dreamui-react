@@ -88,7 +88,7 @@ Avatar.propTypes = {
   backgroundColor: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
-  color: PropTypes.color,
+  color: PropTypes.string,
   icon: PropTypes.element,
   size: PropTypes.number,
   src: PropTypes.string,

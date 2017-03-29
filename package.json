@@ -4,7 +4,7 @@
   "description": "dream UI components build with React.",
   "main": "lib/DreamUIReact.js",
   "scripts": {
-    "demo":"webpack --config webpack.config.js",
+    "demo": "webpack --config webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.product.js",
     "lib": "webpack-dev-server --config webpack.config.product.js --devtool eval --progress --colors --inline --port 8007 --host 127.0.0.1",
     "build-example": "cross-env NODE_ENV=production webpack -p --config webpack.config.example.js",
@@ -47,6 +47,8 @@
     "lodash.merge": "^4.6.0",
     "lodash.throttle": "^4.1.1",
     "react-addons-css-transition-group": "^15.4.2",
+    "react-addons-shallow-compare": "^15.4.2",
+    "react-addons-transition-group": "^15.4.2",
     "react-tap-event-plugin": "^2.0.1",
     "recompose": "^0.22.0",
     "warning": "^3.0.0"

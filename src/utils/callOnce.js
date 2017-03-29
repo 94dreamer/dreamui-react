@@ -9,7 +9,7 @@ export default function callOnce() {
   if (process.env.NODE_ENV !== 'production') {
     return (style) => {
       if (style[CALLED_ONCE]) {
-        warning(false, 'DeamUI:你不能prepareStyle()在同一个样式对象超过一次');
+        warning(false, 'DeamUI:你不能prepareStyles()在同一个样式对象超过一次');
       }
       style[CALLED_ONCE] = true;
       return style;

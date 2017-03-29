@@ -20,7 +20,7 @@ export default {
   spacing: spacing,
   fontFamily: 'Roboto,sans-serif',
   borderRadius:2,
-  palette:{
+  palette:{//调色板
     primary1Color:cyan500,
     primary2Color:cyan700,
     primary3Color:grey400,

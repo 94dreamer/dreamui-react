@@ -19,24 +19,22 @@ const {
  <Welcome showApp={linkTo('Button')}/>
  ));*/
 
-storiesOf('按钮', module)
-  .add('with text', () => (
+storiesOf('按钮', module);
+
+
+storiesOf('Component 组件', module).add('Avatar 头像', () => (
+  <MuiThemeProvider>
+    <div>
+      <p>Avatar - 可以用来表示人或事物</p>
+      <Avatar src="http://94dreamer.com/Public/Uploads/2016-03-22/56f102ed670f7.jpg"/>
+    </div>
+  </MuiThemeProvider>
+)).add('Button 按钮', () => (
+  <div>
     <Button onClick={action('clicked')}>Hello Button</Button>
-  ))
-  .add('with some emoji', () => (
     <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
-  ));
-
-
-storiesOf('Avatar', module)
-  .add('1', () => (
-    <MuiThemeProvider>
-      <Avatar src="http://cdn.iciba.com/www/top/logo.png" />
-    </MuiThemeProvider>
-  ))
-  .add('2', () => (
-    <Button>Hello Button</Button>
-  ));
+  </div>
+));
 
 
 
