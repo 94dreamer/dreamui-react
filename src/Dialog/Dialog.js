@@ -289,16 +289,20 @@ class DialogInline extends Component {
     if (React.isValidElement(title)) {
       titleElement = React.cloneElement(title, {
         className: title.props.className || titleClassName,
-        style:prepareStyles(Object.assign(style.title,title.props.style)),
+        style: prepareStyles(Object.assign(style.title, title.props.style)),
       })
     } else if (typeof title === 'string') {
-      titleElement=(
-        <h3 className={titleClassName} style={prepareStyles(style,title)}>
+      titleElement = (
+        <h3 className={titleClassName} style={prepareStyles(style, title)}>
           {title}
         </h3>
       )
     }
 
+    return (
+      <div className={className} style={prepareStyles(styles.root)}>
+      </div>
+    )
   }
 
 }
