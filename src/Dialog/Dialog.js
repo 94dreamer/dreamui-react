@@ -6,7 +6,10 @@ import React, {
   PropTypes,
 } from 'react';
 import ReactDOM from 'react-dom';
+import EventListener from 'react-event-listener';
 import transitions from '../styles/transitions';
+import Overlay from '../internal/Overlay';
+import Paper from '../Paper';
 
 import ReactTransitionGroup from 'react-addons-transition-group'
 
@@ -301,6 +304,27 @@ class DialogInline extends Component {
 
     return (
       <div className={className} style={prepareStyles(styles.root)}>
+        {open && <EventListener target="window" onKeyUp={this.handleKeyup} onResize={this.handleResize}/>}
+        <ReactTransitionGroup
+          component="div"
+          ref="dialogWindow"
+          transitionAppear={true}
+          transitionAppearTimeout={450}
+          transitionEnter={true}
+          transitionEnterTimeout={450}
+        >
+          {open &&
+          <TransitionItem className={contentClassName} style={styles.content}>
+            <Paper zDepth={5}>
+              {titleElement}
+              <div ref="dialogContent" className={bodyClassName} style={prepareStyles(styles.body)}>
+                {children}
+              </div>
+              {actionContainer}
+            </Paper>
+          </TransitionItem>}
+        </ReactTransitionGroup>
+
       </div>
     )
   }

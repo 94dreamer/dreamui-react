@@ -14,7 +14,7 @@
 
 - recompose react高阶组件函数库
 
-- react-event-listener 构建全局event的react组件(自写)
+- react-event-listener 构建全局event的react组件()
 
 - react-addons-shallow-compare 官方的es6语法的辅助函数，在shouldComponentUpdate中比较状态，减少更新次数
 
