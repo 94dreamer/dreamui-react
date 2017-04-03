@@ -8,7 +8,7 @@ Dream UI component build with React.
 ----
 
 - webpack 2
--
+- inlinestyle
 
 ## Start Program
 
