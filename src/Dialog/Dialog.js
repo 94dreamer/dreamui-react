@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import transitions from '../styles/transitions';
 import Overlay from '../internal/Overlay';
+import RenderToLayer from '../internal/RenderToLayer';
 import Paper from '../Paper';
 
 import ReactTransitionGroup from 'react-addons-transition-group'
