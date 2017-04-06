@@ -2,21 +2,22 @@
  * Created by zhouzhen on 2017/4/4.
  */
 import {Component, PropTypes} from 'react';
-import {unstable_renderSubtreeIntoContainer, unmountComponentAtNode} from 'react-dom';
+import {unstable_renderSubtreeIntoContainer, unmountComponentAtNode} from 'react-dom';//销毁指定容器内的所有React节点
 
 import Dom from '../utils/dom';
 
+// heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
 class RenderToLayer extends Component {
   static propTypes = {
     componentClickAway: PropTypes.func,
     open: PropTypes.bool.isRequired,
     render: PropTypes.func.isRequired,
     useLayerForClickAway: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     useLayerForClickAway: true,
-  }
+  };
 
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
@@ -26,7 +27,7 @@ class RenderToLayer extends Component {
     this.renderLayer();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this.renderLayer();
   }
 
@@ -49,10 +50,10 @@ class RenderToLayer extends Component {
 
     const el = this.layer;
     if (event.target !== el && event.target === window ||
-      (document.documentElement.contains(event.target) && !Dom.isDescendant(el, event.target))) {//检测是否是祖先节点
+      (document.documentElement.contains(event.target) && !Dom.isDescendant(el, event.target))) {
       this.props.componentClickAway(event);
     }
-  }
+  };
 
   getLayer() {
     return this.layer;
@@ -62,6 +63,7 @@ class RenderToLayer extends Component {
     if (!this.layer) {
       return;
     }
+
     if (this.props.useLayerForClickAway) {
       this.layer.style.position = 'relative';
       this.layer.removeEventListener('touchstart', this.onClickAway);
@@ -71,37 +73,48 @@ class RenderToLayer extends Component {
       window.removeEventListener('click', this.onClickAway);
     }
 
-    unmountComponentAtNode(this.layer);
+    unmountComponentAtNode(this.layer);//销毁指定容器内的所有React节点
     document.body.removeChild(this.layer);
     this.layer = null;
   }
 
+  /**
+   * By calling this method in componentDidMount() and
+   * componentDidUpdate(), you're effectively creating a "wormhole" that
+   * funnels React's hierarchical updates through to a DOM node on an
+   * entirely different part of the page.
+   */
   renderLayer() {
-    const { open, render,}=this.props;
-    if(open){
-      if(!this.layer){
-        this.layer=document.createElement('div');
+    const {
+      open,
+      render,
+    } = this.props;
+
+    if (open) {
+      if (!this.layer) {
+        this.layer = document.createElement('div');
         document.body.appendChild(this.layer);
 
-        if(this.props.useLayerForClickAway){
-          this.layer.addEventListener('touchstart',this.onClickAway);
-          this.layer.addEventListener('click',this.onClickAway);
-          this.layer.style.position='fixed';
+        if (this.props.useLayerForClickAway) {
+          this.layer.addEventListener('touchstart', this.onClickAway);
+          this.layer.addEventListener('click', this.onClickAway);
+          this.layer.style.position = 'fixed';
           this.layer.style.top = 0;
           this.layer.style.bottom = 0;
           this.layer.style.left = 0;
           this.layer.style.right = 0;
           this.layer.style.zIndex = this.context.muiTheme.zIndex.layer;
-        }else{
-          setTimeout(()=>{
+        } else {
+          setTimeout(() => {
             window.addEventListener('touchstart', this.onClickAway);
             window.addEventListener('click', this.onClickAway);
-          },0);
+          }, 0);
         }
       }
-      const layerElement=render();
-      this.layerElement=unstable_renderSubtreeIntoContainer(this,layerElement,this.layer);
-    }else{
+
+      const layerElement = render();
+      this.layerElement = unstable_renderSubtreeIntoContainer(this, layerElement, this.layer);
+    } else {
       this.unrenderLayer();
     }
   }
@@ -109,8 +122,6 @@ class RenderToLayer extends Component {
   render() {
     return null;
   }
-
 }
-
 
 export default RenderToLayer;
