@@ -21,3 +21,10 @@
 - keycode 映射按键和键名
 
 - react-addons-transition-group 官方提供的动画插件的react组件
+
+
+
+- 测试运行器 Test Runner: edp-test karma
+- 测试框架 Testing Framework: jasmine mocha qunit Jest
+- 断言库 Assertion library: expect.js should chai
+- 覆盖率 Coverage library: istanbul
