@@ -3,6 +3,10 @@
  */
 import {PropTypes} from 'react';
 
+const horizontal=PropTypes.oneOf(['left', 'middle', 'right']);//水平
+
+const vertical=PropTypes.oneOf(['top', 'center', 'bottom']);//垂直
+
 export default {
   corners: PropTypes.oneOf([
     'bottom-left',
@@ -11,13 +15,13 @@ export default {
     'top-right',
   ]),//角落
 
-  horizontal: PropTypes.oneOf(['left', 'middle', 'right']),//水平
+  horizontal: horizontal,
 
-  vertical: PropTypes.oneOf(['top', 'center', 'bottom']),//垂直
+  vertical: vertical,
 
   origin:PropTypes.shape({
-    horizontal:this.horizontal,
-    vertical:this.vertical
+    horizontal:horizontal,
+    vertical:vertical
   }),
 
   cornersAndCenter:PropTypes.oneOf([

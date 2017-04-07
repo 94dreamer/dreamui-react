@@ -9,10 +9,13 @@ import getMuiTheme from '../src/styles/getMuiTheme';
 import lightBaseTheme from '../src/styles/baseThemes/lightBaseTheme';
 //import muiThemeable from '../src/styles/muiThemeable';
 
+import Dialog from '../src/Dialog';
+
 const {
   Button,
   Avatar,
 }=DreamUIReact;
+
 
 /*storiesOf('Welcome', module)
  .add('to Storybook', () => (
@@ -34,7 +37,15 @@ storiesOf('Component 组件', module).add('Avatar 头像', () => (
     <Button onClick={action('clicked')}>Hello Button</Button>
     <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
   </div>
-));
+)).add('Dialog 对话框', () => (
+  <MuiThemeProvider>
+    <div>
+      <Dialog title="Dialog对话框Demo" open={true} actions={[<Button>阿牛</Button>]} >
+      dialog内容
+      </Dialog>
+    </div>
+  </MuiThemeProvider>
+))
 
 
 

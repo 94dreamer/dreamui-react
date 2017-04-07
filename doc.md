@@ -39,6 +39,6 @@
 
 - unstable_renderSubtreeIntoContainer(parentComponent, nextElement, container, callback)
 
-- unmountComponentAtNode(Node) 销毁指定容器内的所有React节点
+- unmountComponentAtNode(container) 销毁指定容器内的所有React节点
 
 - findDOMNode(component) 获取真正的DOM,一般参数都是this指代组件自己

@@ -1,4 +1,5 @@
 /**
+ * 点击渲染层
  * Created by zhouzhen on 2017/4/4.
  */
 import {Component, PropTypes} from 'react';
@@ -6,7 +7,6 @@ import {unstable_renderSubtreeIntoContainer, unmountComponentAtNode} from 'react
 
 import Dom from '../utils/dom';
 
-// heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
 class RenderToLayer extends Component {
   static propTypes = {
     componentClickAway: PropTypes.func,
@@ -36,22 +36,22 @@ class RenderToLayer extends Component {
   }
 
   onClickAway = (event) => {
-    if (event.defaultPrevented) {
+    if (event.defaultPrevented) {//被阻止了默认事件
       return;
     }
 
-    if (!this.props.componentClickAway) {
+    if (!this.props.componentClickAway) {//没有点击回调
       return;
     }
 
-    if (!this.props.open) {
+    if (!this.props.open) {//没有打开
       return;
     }
 
     const el = this.layer;
     if (event.target !== el && event.target === window ||
       (document.documentElement.contains(event.target) && !Dom.isDescendant(el, event.target))) {
-      this.props.componentClickAway(event);
+      this.props.componentClickAway(event);//点击layer之外的部分，就触发回调
     }
   };
 
@@ -59,7 +59,7 @@ class RenderToLayer extends Component {
     return this.layer;
   }
 
-  unrenderLayer() {
+  unrenderLayer() { //卸载
     if (!this.layer) {
       return;
     }
@@ -79,19 +79,17 @@ class RenderToLayer extends Component {
   }
 
   /**
-   * By calling this method in componentDidMount() and
-   * componentDidUpdate(), you're effectively creating a "wormhole" that
-   * funnels React's hierarchical updates through to a DOM node on an
-   * entirely different part of the page.
+   * componentDidMount() 和 componentDidUpdate() 会调用此方法
+   * 将react的干涉层面提升到了全局的DOM级别
    */
-  renderLayer() {
+  renderLayer() { //相当于重新定义了render方法
     const {
       open,
       render,
     } = this.props;
 
     if (open) {
-      if (!this.layer) {
+      if (!this.layer) {//创建一个div放到body内部，
         this.layer = document.createElement('div');
         document.body.appendChild(this.layer);
 
