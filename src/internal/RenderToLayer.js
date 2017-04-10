@@ -1,5 +1,5 @@
 /**
- * 点击渲染层
+ * 渲染层
  * Created by zhouzhen on 2017/4/4.
  */
 import {Component, PropTypes} from 'react';

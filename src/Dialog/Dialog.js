@@ -181,11 +181,11 @@ class DialogInline extends Component {
   };
 
   componentDidMount() {
-    //this.positionDialog();
+    this.positionDialog();
   }
 
   componentDidUpdate() {
-    //this.positionDialog();
+    this.positionDialog();
   }
 
   positionDialog() {
@@ -411,7 +411,7 @@ class Dialog extends Component {
     contentStyle: PropTypes.object,
     /**
      * 模态框
-     * 这将导致用户必须使用dialog的action按钮之一才能逃离
+     * 这将导致用户必须使用dialog的action按钮之一才能逃离模态界面
      * 点击dialog主体部分之外将不会触发onRequestClose
      */
     modal: PropTypes.bool,
